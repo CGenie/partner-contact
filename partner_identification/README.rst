@@ -15,7 +15,7 @@ and vary from country to country.
 * Fiscal ID's
 * Membership numbers
 * Driver license
-* ...
+* etc
 
 
 Installation
@@ -27,7 +27,7 @@ No specific installation step required
 Configuration
 =============
 
-Configure all ID types you need in Sales > Configuration > Address Book > Partner ID Categories.
+Configure all ID types you need in Sales > Configuration > Contacts > Partner ID Categories.
 For example, we create a category 'Driver License':
 
 Name:
@@ -35,8 +35,15 @@ Name:
 Code:
   Code, abbreviation or acronym of this ID type. For example, 'driver_license'
 Python validation code:
-  Optional python code called to validate ID numbers of this ID type.
+  Optional python code called to validate ID numbers of this ID type. This functionality can be
+  overridden by setting ``id_no_validate`` to ``True`` in the context, such as:
 
+  .. code-block:: python
+
+   partner.with_context(id_no_validate=True).write({
+      'name': 'Bad Value',
+      'category_id': self.env.ref('id_category_only_numerics').id,
+   })
 
 Usage
 =====
@@ -63,7 +70,7 @@ Notes:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/134/9.0
+   :target: https://runbot.odoo-community.org/runbot/134/10.0
 
 
 Known issues / Roadmap
@@ -77,9 +84,13 @@ Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/partner-contact/issues>`_. In case of trouble, please
+<https://github.com/OCA/partner_contact/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
-help us smash it by providing detailed and welcomed feedback.
+help us smashing it by providing a detailed and welcomed `feedback
+<https://github.com/OCA/
+partner_contact/issues/new?body=module:%20
+partner_identifiers%0Aversion:%20
+9.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 
 Credits
@@ -88,11 +99,12 @@ Credits
 Contributors
 ------------
 
-* Antonio Espinosa <antonioea@antiun.com>
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Ferdinand Gassauer <office@chrcar.at>
 * Gerhard Könighofer <gerhard.koenighofer@swing-system.com>
 * Laurent Mignon <laurent.mignon@acsone.eu>
-* Yajo <Yajo@users.noreply.github.com>
+* Jairo Llopis <jairo.llopis@tecnativa.com>
+* Dave Lasley <dave@laslabs.com>
 
 Maintainer
 ----------
