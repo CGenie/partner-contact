@@ -38,7 +38,7 @@
 
 <menuitem action="action_partner_id_category"
           id="menu_partner_id_category"
-          parent="sales_team.menu_config_address_book"/>
+          parent="sales_team.menu_sales_team_act"/>
 
 </data>
 </openerp>
