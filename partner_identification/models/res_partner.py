@@ -53,9 +53,10 @@ class ResPartner(models.Model):
             id_numbers = record.id_numbers.filtered(
                 lambda r: r.category_id.code == category_code
             )
-            if not id_numbers:
-                continue
-            value = id_numbers[0].name
+            try:
+                value = id_numbers[0].name
+            except IndexError:
+                value = False
             setattr(record, field_name, value)
 
     def _inverse_identification(self, field_name, category_code):
