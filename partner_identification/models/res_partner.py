@@ -56,7 +56,7 @@ class ResPartner(models.Model):
             if not id_numbers:
                 continue
             value = id_numbers[0].name
-            record[field_name] = value
+            setattr(record, field_name, value)
 
     def _inverse_identification(self, field_name, category_code):
         """ Inverse for an identification field.
@@ -116,7 +116,7 @@ class ResPartner(models.Model):
                 })
             # There was an identification record singleton found.
             elif record_len == 1:
-                value = record[field_name]
+                value = getattr(record, field_name)
                 if value:
                     id_number.name = value
                 else:
